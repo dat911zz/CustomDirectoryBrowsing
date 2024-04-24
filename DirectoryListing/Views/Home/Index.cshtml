@@ -17,7 +17,7 @@
     <a class="download" href="/_zip/@last.Url"><img src="data:image/png;base64,@DirectoryListing.Models.Info.ZipIcon" /> Tải toàn bộ thư mục</a>
     <div>
         <br />
-        <span>Đường dẫn: </span>
+        <span>Path: </span>
         <span><a href="/">_ </a>/</span>
         @foreach (var ancestor in Model.Ancestors.Take(Model.Ancestors.Length - 1))
         {
@@ -31,7 +31,7 @@ else
     <a class="download" href="/_zip/"><img src="data:image/png;base64,@DirectoryListing.Models.Info.ZipIcon" /> Tải toàn bộ thư mục</a>
     <div>
         <br />
-        <span>Đường dẫn: </span>
+        <span>Path: </span>
         <span class="last">/</span>
     </div>
 }
@@ -42,16 +42,16 @@ else
     <thead>
         <tr>
             <th width="10%" align="left">
-                Tải thư mục
+                Download dir
             </th>
             <th width="50%" align="left">
-                Tên
+                Name
             </th>
             <th align="left">
-                Ngày chỉnh sửa
+                Date modified
             </th>
             <th align="right">
-                Kích thước
+                Size
             </th>
             <th width="250">
                 
