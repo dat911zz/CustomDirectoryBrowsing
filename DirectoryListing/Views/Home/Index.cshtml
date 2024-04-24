@@ -1,0 +1,101 @@
+﻿@model DirectoryListing.Models.Directory
+@{
+    ViewBag.Title = string.Join("/", Model.Ancestors.Select(x => x.Name));
+}
+
+<style>
+    ul {
+        list-style-type: none;
+    }
+</style>
+
+<hr>
+
+@{ var last = Model.Ancestors.LastOrDefault(); }
+@if (last != null)
+{
+    <a class="download" href="/_zip/@last.Url"><img src="data:image/png;base64,@DirectoryListing.Models.Info.ZipIcon" /> Tải toàn bộ thư mục</a>
+    <div>
+        <br />
+        <span>Đường dẫn: </span>
+        <span><a href="/">_ </a>/</span>
+        @foreach (var ancestor in Model.Ancestors.Take(Model.Ancestors.Length - 1))
+        {
+            <span><a href="/@ancestor.Url">@ancestor.Name</a>/</span>
+        }
+        <span class="last">@last.Name</span>
+    </div>
+}
+else
+{
+    <a class="download" href="/_zip/"><img src="data:image/png;base64,@DirectoryListing.Models.Info.ZipIcon" /> Tải toàn bộ thư mục</a>
+    <div>
+        <br />
+        <span>Đường dẫn: </span>
+        <span class="last">/</span>
+    </div>
+}
+
+<hr>
+
+<table style="width: 100%">
+    <thead>
+        <tr>
+            <th width="10%" align="left">
+                Tải thư mục
+            </th>
+            <th width="50%" align="left">
+                Tên
+            </th>
+            <th align="left">
+                Ngày chỉnh sửa
+            </th>
+            <th align="right">
+                Kích thước
+            </th>
+            <th width="250">
+                
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var directory in Model.Directories)
+        {
+            <tr>
+                <td>
+                    <a class="download" href="/_zip/@directory.Url">
+                        <img src="data:image/png;base64,@DirectoryListing.Models.Info.ZipIcon" />
+                    </a>
+                </td>
+                <td>
+                    <a href="/@directory.Url">
+                        <img src="data:image/png;base64,@directory.Icon" />
+                        <span class="file-name">@directory.Name</span>
+                    </a>
+                </td>
+            </tr>
+        }
+        @foreach (var file in Model.Files)
+        {
+            <tr>
+                <td>
+                    
+                </td>
+                <td>
+                    <a href="/@file.Url">
+                        <img src="data:image/png;base64,@file.Icon" />
+                        <span class="file-name">@file.Name</span>
+                    </a>
+                </td>
+                <td>
+                    <span class="file-size">@file.ModifiedDate.ToString("dd/MM/yyyy HH:mm:ss")</span>
+                </td>
+                <td align="right">
+                    <span class="file-size">@file.Size</span>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<hr>
