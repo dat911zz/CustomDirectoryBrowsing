@@ -1,4 +1,4 @@
-# DirectoryListing
+# CustomDirectoryBrowsing
 
 An ASP.NET MVC Directory Listing application. Replace the boring default directory listings from IIS with a completely customizable version.
 
